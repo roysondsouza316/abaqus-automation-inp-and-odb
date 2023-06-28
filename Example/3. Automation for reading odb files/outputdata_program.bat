@@ -1,0 +1,1 @@
+abaqus cae script=code_output1.py

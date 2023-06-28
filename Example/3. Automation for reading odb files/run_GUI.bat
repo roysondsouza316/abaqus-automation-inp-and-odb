@@ -1,0 +1,1 @@
+abaqus cae script=odb_automation.py
