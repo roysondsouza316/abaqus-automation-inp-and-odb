@@ -5,16 +5,14 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
 
 ## Features
 
 This GitLab repository contains Python scripts for automating various tasks related to Abaqus simulations. The provided scripts include:
 
 1. [Input File Generation](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/1.%20Input%20file%20generation?ref_type=heads): Automatically generate Abaqus input files based on data from a CSV file.
-2. [Batch Running of Input Files](#2-batch-running-of-input-files): Automate the execution of Abaqus input files in parallel.
-3. [Automation for Reading ODB Files](#3-automation-for-reading-odb-files): Automate the extraction of data from Abaqus ODB files for multiple models.
+2. [Batch Running of Input Files](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/2.%20Batch%20running%20of%20inp%20files?ref_type=heads): Automate the execution of Abaqus input files in parallel.
+3. [Automation for Reading ODB Files](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/3.%20Automation%20for%20reading%20odb%20files?ref_type=heads): Automate the extraction of data from Abaqus ODB files for multiple models.
 
 ## Prerequisites
 
@@ -28,4 +26,16 @@ Before using the scripts, ensure you have the following prerequisites:
 ## Installation
 
 1. Clone this GitLab repository to your local machine using the following command:
+
+```bash
+https://gitlab.com/royson316/abaqus-automation-inp-and-odb.git
+```
+2. Navigate to the repository directory:
+
+```bash
+cd abaqus-automation
+```
+
+3. Ensure that the Abaqus executable (`abaqus.bat`) is available and properly configured in your system's PATH.
+
 
