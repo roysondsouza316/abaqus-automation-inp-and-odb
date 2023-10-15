@@ -1,0 +1,312 @@
+# Save by dsouza on 2023_06_28-16.50.07; build 2020 2019_09_13-20.49.31 163176
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(25.0, -5.0), 
+    point2=(-25.0, 20.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-1'].BaseSolidExtrude(depth=100.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.25), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-1'].Set(cells=
+    mdb.models['Model-1'].parts['Part-1'].cells.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-1'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-1'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=OFF, name='Part-1-1', 
+    part=mdb.models['Model-1'].parts['Part-1'])
+mdb.models['Model-1'].StaticStep(name='Step-1', nlgeom=ON, previous='Initial')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-1-1'].faces.getSequenceFromMask(
+    ('[#10 ]', ), ), name='fixed')
+mdb.models['Model-1'].EncastreBC(createStepName='Step-1', localCsys=None, name=
+    'fixed', region=mdb.models['Model-1'].rootAssembly.sets['fixed'])
+mdb.models['Model-1'].rootAssembly.Set(name='load', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['Part-1-1'].vertices.getSequenceFromMask(
+    ('[#88 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf2=-10.0, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['load'])
+mdb.models['Model-1'].rootAssembly.seedPartInstance(deviationFactor=0.1, 
+    minSizeFactor=0.1, regions=(
+    mdb.models['Model-1'].rootAssembly.instances['Part-1-1'], ), size=10.0)
+mdb.models['Model-1'].rootAssembly.generateMesh(regions=(
+    mdb.models['Model-1'].rootAssembly.instances['Part-1-1'], ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by dsouza on 2023_06_28-16.54.34; build 2020 2019_09_13-20.49.31 163176
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.jobs['Job-1']
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Model', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Model'].submit(consistencyChecking=OFF)
+mdb.jobs['Model']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Model.odb', 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 17012, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Model', 'memory': 30.0})
+mdb.jobs['Model']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Model', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Model']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(JOB_COMPLETED, {'time': 'Wed Jun 28 16:55:53 2023', 
+    'jobName': 'Model'})
+mdb.models['Model-1'].loads['Load-1'].setValues(cf2=-100.0, distributionType=
+    UNIFORM, field='')
+mdb.models['Model-1'].rootAssembly.Set(name='disp', nodes=
+    mdb.models['Model-1'].rootAssembly.instances['Part-1-1'].nodes.getSequenceFromMask(
+    mask=('[#0 #800 ]', ), ))
+mdb.models['Model-1'].HistoryOutputRequest(createStepName='Step-1', name=
+    'disp_hisory', rebar=EXCLUDE, region=
+    mdb.models['Model-1'].rootAssembly.sets['disp'], sectionPoints=DEFAULT, 
+    variables=('U2', ))
+mdb.jobs['Model'].submit(consistencyChecking=OFF)
+mdb.jobs['Model']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Model.odb', 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 21016, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Model', 'memory': 30.0})
+mdb.jobs['Model']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Model', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Model']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(JOB_COMPLETED, {'time': 'Wed Jun 28 17:04:41 2023', 
+    'jobName': 'Model'})
+mdb.models['Model-1'].loads['Load-1'].setValues(cf2=-1000.0, distributionType=
+    UNIFORM, field='')
+mdb.jobs['Model'].submit(consistencyChecking=OFF)
+mdb.jobs['Model']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Model.odb', 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 1376, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Model', 'memory': 30.0})
+mdb.jobs['Model']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Model', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Model']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(JOB_COMPLETED, {'time': 'Wed Jun 28 17:07:36 2023', 
+    'jobName': 'Model'})
+mdb.models['Model-1'].loads['Load-1'].setValues(cf2=-10000.0, distributionType=
+    UNIFORM, field='')
+mdb.jobs['Model'].submit(consistencyChecking=OFF)
+mdb.jobs['Model']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Model.odb', 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 10984, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Model', 'memory': 30.0})
+mdb.jobs['Model']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Model', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Model']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(JOB_COMPLETED, {'time': 'Wed Jun 28 17:08:15 2023', 
+    'jobName': 'Model'})
+mdb.models['Model-1'].loads['Load-1'].setValues(cf2=-50000.0, distributionType=
+    UNIFORM, field='')
+mdb.jobs['Model'].submit(consistencyChecking=OFF)
+mdb.jobs['Model']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Model.odb', 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 3268, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Model', 'memory': 30.0})
+mdb.jobs['Model']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Model'})
+mdb.jobs['Model']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Model', 'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 
+    'equilibrium': 3})
+mdb.jobs['Model']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Model'})
+mdb.jobs['Model']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Model'})
+mdb.jobs['Model']._Message(JOB_COMPLETED, {'time': 'Wed Jun 28 17:08:51 2023', 
+    'jobName': 'Model'})
+# Save by dsouza on 2023_06_28-17.09.12; build 2020 2019_09_13-20.49.31 163176
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.jobs['Model']
+mdb.models['Model-1'].historyOutputRequests['H-Output-1'].setValues(variables=(
+    'ALLSE', 'ALLIE'))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='master_file', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['master_file'].submit(consistencyChecking=OFF)
+mdb.jobs['master_file']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 0, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Git_projects\\Abaqus_automation\\Input file generation\\master_file.odb', 
+    'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'WKS-91318-LT', 'handle': 9260, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'master_file', 'memory': 30.0})
+mdb.jobs['master_file']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32549.0, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(MINIMUM_MEMORY, {'minimum_memory': 22.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'master_file', 'severe': 0, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['master_file']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'master_file'})
+mdb.jobs['master_file']._Message(JOB_COMPLETED, {
+    'time': 'Wed Jun 28 19:18:45 2023', 'jobName': 'master_file'})
+# Save by dsouza on 2023_06_28-19.18.54; build 2020 2019_09_13-20.49.31 163176
