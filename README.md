@@ -1,4 +1,7 @@
 # Abaqus Automation
+Part of this work has been utilized for the publication:
+
+[_**Dsouza, Royson Donate, et al. "Mutual dependence of experimental and data analysis features in characterization of fiber‐matrix interface via microdroplets." Polymer Composites (2023).**_](https://4spepublications.onlinelibrary.wiley.com/doi/full/10.1002/pc.27649 "DOI")
 
 ## Table of Contents
 
