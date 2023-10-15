@@ -5,6 +5,7 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Usage](#Usage)
 
 ## Features
 
@@ -39,3 +40,10 @@ cd abaqus-automation
 3. Ensure that the Abaqus executable (`abaqus.bat`) is available and properly configured in your system's PATH.
 
 
+## Usage
+After completing the installation steps, you can use the Abaqus automation scripts as described in the individual sections of the README:
+
+1. Input File Generation: Instructions for generating Abaqus input files.
+2. Batch Running of Input Files: Guidance on running Abaqus jobs in batch mode.
+3. Automation for Reading ODB Files: Instructions for automating data extraction from ODB files.
+4. Example file.
