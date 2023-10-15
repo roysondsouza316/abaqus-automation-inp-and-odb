@@ -14,6 +14,7 @@ This GitLab repository contains Python scripts for automating various tasks rela
 1. [Input File Generation](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/1.%20Input%20file%20generation?ref_type=heads): Automatically generate Abaqus input files based on data from a CSV file.
 2. [Batch Running of Input Files](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/2.%20Batch%20running%20of%20inp%20files?ref_type=heads): Automate the execution of Abaqus input files in parallel.
 3. [Automation for Reading ODB Files](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/3.%20Automation%20for%20reading%20odb%20files?ref_type=heads): Automate the extraction of data from Abaqus ODB files for multiple models.
+4. [Automation for Reading ODB Files](https://gitlab.com/royson316/abaqus-automation-inp-and-odb/-/tree/main/Example): An example file with the above three processes.
 
 ## Prerequisites
 
